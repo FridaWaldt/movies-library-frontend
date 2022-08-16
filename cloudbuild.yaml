@@ -1,0 +1,40 @@
+substitutions:
+  # Params with default values
+  _PROJECT_NAME: movies-library
+  _ENVIRONMENT: stage
+  _PROJECT_REGION: europe-west1
+  _CONTAINER_REGION: eu.gcr.io
+
+steps:
+  # Build Container image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "${_CONTAINER_REGION}/$PROJECT_ID/${_PROJECT_NAME}:${SHORT_SHA}"
+      - "--build-arg"
+      - "ENVIRONMENT=${_ENVIRONMENT}"
+      - "."
+  # Push Container image to Container Repo
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "${_CONTAINER_REGION}/$PROJECT_ID/${_PROJECT_NAME}:${SHORT_SHA}"
+    # Deploy Container image to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "${_PROJECT_NAME}"
+      - "--image"
+      - "${_CONTAINER_REGION}/$PROJECT_ID/${_PROJECT_NAME}:${SHORT_SHA}"
+      - "--region"
+      - "${_PROJECT_REGION}"
+      - "--update-env-vars"
+      - "VUE_APP_PROJECT_ID=$PROJECT_ID"
+      - "--platform"
+      - "managed"
+      - "--allow-unauthenticated"
+      - "--project"
+      - "$PROJECT_ID"
+      - "--async"
