@@ -23,7 +23,7 @@ export const Movies = () => {
 
   return (
     <div>
-      <h1>Movies to watch!</h1>
+      <h1>Movie to watch!</h1>
       <div className='movies'>
         {movies.map((movie) => (
           <section>
