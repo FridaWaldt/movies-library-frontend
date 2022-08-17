@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { FormView } from './views/FormView';
-import { MoviesView } from './views/MoviesView';
-import { HomeView } from './views/HomeView';
-import {Nav} from './components/Nav'
+import { Form } from './components/Form';
+import { Movies } from './components/Movies';
+import { Home } from './components/Home';
+import { Nav } from './components/Nav';
 
 function App() {
   return (
@@ -10,9 +10,9 @@ function App() {
       <Router>
         <Nav />
         <Routes>
-          <Route path='/' element={<HomeView/>} />
-          <Route path='/form' element={<FormView />} />
-          <Route path='/movies' element={<MoviesView />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/form' element={<Form />} />
+          <Route path='/movies' element={<Movies />} />
         </Routes>
       </Router>
     </>
