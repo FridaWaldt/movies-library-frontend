@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { collection, doc, getDocs } from 'firebase/firestore';
-import { db } from '../lib/init-firebase';
+import { db } from '../../lib/init-firebase';
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -22,9 +22,9 @@ export const Movies = () => {
   };
 
   return (
-    <div>
-      <h1>Movie to watch!</h1>
-      <div className='movies'>
+    <section className='movies-section'>
+      <h1>Movies to watch!</h1>
+      <div className='movies-group'>
         {movies.map((movie) => (
           <section>
             <h3>{movie.data.title}</h3>
@@ -33,6 +33,7 @@ export const Movies = () => {
           </section>
         ))}
       </div>
-    </div>
+      <button>Submit more movies</button>
+    </section>
   );
 };

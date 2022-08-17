@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../lib/init-firebase';
+import { db } from '../../lib/init-firebase';
+import './Form.css';
 
 export const Form = () => {
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
   const [rating, setRating] = useState(0);
+  const [submit, setSubmit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,12 +16,13 @@ export const Form = () => {
     }
     const moviesCollection = collection(db, 'movies');
     addDoc(moviesCollection, { title: title, url: url, rating: rating });
+    setSubmit(true);
   };
 
   return (
-    <>
+    <div className='form-group'>
       <h1>Add a movie</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <div className='title-group'>
           <h3>Title</h3>
           <input
@@ -41,8 +44,18 @@ export const Form = () => {
             <option value='5'>5</option>
           </select>
         </div>
-        <button type='submit'>Submit</button>
+        <button type='submit' className='submit-btn'>
+          Submit
+        </button>
+        {submit ? (
+          <div className='submitted-msg'>
+            <h3>You submitted a movie, check it out!</h3>
+            <button>Click here</button>
+          </div>
+        ) : (
+          ''
+        )}
       </form>
-    </>
+    </div>
   );
 };
