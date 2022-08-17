@@ -25,11 +25,13 @@ export const Movies = () => {
     <div>
       <h1>Movies to watch!</h1>
       <div className='movies'>
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.id}>{movie.data.title}</li>
-          ))}
-        </ul>
+        {movies.map((movie) => (
+          <section>
+            <h3>{movie.data.title}</h3>
+            <a href={movie.data.url}>IMDB</a>
+            <h3>{movie.data.rating}/5</h3>
+          </section>
+        ))}
       </div>
     </div>
   );
