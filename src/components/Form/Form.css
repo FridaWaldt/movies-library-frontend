@@ -1,6 +1,50 @@
 .form-group {
   height: 100vh;
-  margin: 0;
   width: 100vw;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.form-title{
+  margin-bottom: 5rem;
+}
+
+.form-labels{
+  font-size: 1.3rem;
+}
+
+.form-elements{
+  margin: 1rem 0;
+  border-radius: 50px;
+  padding: 10px 20px;
+  border: 1px rgb(62, 62, 62) solid;
+  font-size: 1.5rem;
+}
+
+.submit-btn{
+  margin: 5rem 0;
+  padding: 10px 35px;
+  background-color: rgb(69, 69, 201);
+  color: aliceblue;
+}
+
+.submitted-msg{
+
+}
+
+.submitted-text{
+
+}
+
+.submitted-btn{
+  background-color:  rgb(62, 62, 62);
+  color: aliceblue;
+  margin: 2rem 0;
+  padding: 10px 35px;
+  border-radius: 50px;
+  border: none;
+  font-size: 1rem;
 }
